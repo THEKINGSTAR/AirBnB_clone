@@ -11,10 +11,6 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
 
-    def do_greet(self, line):
-        """ just for testing """
-        print("hello")
-
     def do_quit(self, line):
         """ quit from airbnb console on quit command """
         return True
