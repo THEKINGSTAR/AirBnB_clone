@@ -6,6 +6,7 @@ import uuid
 from datetime import datetime
 from datetime import datetime, timezone
 
+from models import storage
 
 class BaseModel():
     """ class BaseModel """
@@ -22,6 +23,7 @@ class BaseModel():
         for instance attribute updated at
         """
         self.updated_at = datetime.now(tz=timezone.utc)
+        storage.save()
 
     def to_dict(self):
         """
