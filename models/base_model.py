@@ -33,6 +33,7 @@ class BaseModel():
         for instance attribute updated at
         """
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """
