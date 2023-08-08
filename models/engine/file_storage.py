@@ -39,9 +39,9 @@ class FileStorage:
         """
         returns the dictionary __objects
         """
-        print("#" * 30)
-        print(f"TEST CHECK all  __objects method {FileStorage.__objects}")
-        print("#" * 30)
+        """print("#" * 30)"""
+        """print(f"TEST CHECK all  __objects method {FileStorage.__objects}")"""
+        """print("#" * 30)"""
         
         return (FileStorage.__objects)
 
@@ -51,9 +51,9 @@ class FileStorage:
         """
         key = "{}.{}".format(obj.__class__.__name__, str(obj.id))
         
-        print("#" * 30)
-        print(f"TEST CHECK new method key  {key}")
-        print("#" * 30)
+        """print("#" * 30)"""
+        """print(f"TEST CHECK new method key  {key}")"""
+        """print("#" * 30)"""
         
         FileStorage.__objects[key] = obj
 
@@ -68,7 +68,8 @@ class FileStorage:
         for key, obj in FileStorage.__objects.items():
             seral_objcts[key] = obj.to_dict()
         
-        print(f"TEST CHECK SERIALIZED OBJECTS {seral_objcts}")
+        """print(f"TEST CHECK SERIALIZED OBJECTS {seral_objcts}")"""
+        
         """
         FIX THE {} IN 'file.json'
         NOW WILL CHEC IF THERE IS DATA IN THE FILE LOAD IT IN DICTIONARY
@@ -80,12 +81,12 @@ class FileStorage:
 
         seral_objcts.update(read_data)
         
-        print(f"TEST CHECK IF UPDATED SERIALIZED OBJECTS {seral_objcts}")
+        """print(f"TEST CHECK IF UPDATED SERIALIZED OBJECTS {seral_objcts}")"""
         with open(FileStorage.__file_path, 'w', encoding="utf-8") as file:
             
-            print("#" * 30)
-            print(f"TEST CHECK save methond  {FileStorage.__objects}")
-            print("#" * 30)
+            """print("#" * 30)"""
+            """print(f"TEST CHECK save methond  {FileStorage.__objects}")"""
+            """print("#" * 30)"""
             
             json.dump(seral_objcts, file, ensure_ascii=False)
 
@@ -97,7 +98,7 @@ class FileStorage:
         """
         if not os.path.isfile(FileStorage.__file_path):
             return
-
+        
         with open(FileStorage.__file_path, 'r', encoding="utf-8") as file:
             data = file.read()
             if data:

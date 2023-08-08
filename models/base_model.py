@@ -47,9 +47,13 @@ class BaseModel():
         my_dict["__class__"] = type(self).__name__
         my_dict['created_at'] = self.created_at.isoformat()
         my_dict['updated_at'] = self.updated_at.isoformat()
+        
+        """
         print("#" * 30)
         print(f"CHECK THE RETURND DICTIONARY {my_dict}")
         print("#" * 30)
+        """
+
         return (my_dict)
 
     def __str__(self):
