@@ -5,12 +5,11 @@ Class FileStorage that serializes instances to a JSON file
 and
 deserializes JSON file to instances:
 """
-
 import json
 import os
 
 
-class FileStorage():
+class FileStorage:
     """
     Private class attributes:
     __file_path: string - path to the JSON file (ex: file.json)
@@ -37,13 +36,22 @@ class FileStorage():
         """
         returns the dictionary __objects
         """
-        return (self.__objects)
+        print("#" * 30)
+        print(f"TEST CHECK all  __objects method {FileStorage.__objects}")
+        print("#" * 30)
+        
+        return (FileStorage.__objects)
 
     def new(self, obj):
         """
         sets in __objects the obj with key <obj class name>.id
         """
-        key = "".format(obj.__class__.__name__, obj.id)
+        key = "{}.{}".format(obj.__class__.__name__, str(obj.id))
+        
+        print("#" * 30)
+        print(f"TEST CHECK new method key  {key}")
+        print("#" * 30)
+        
         FileStorage.__objects[key] = obj
 
     """ filestorage class in engine folder """
@@ -53,9 +61,17 @@ class FileStorage():
         function that writes an Object to a text file,
         using a JSON representation:
         """
-
-        with open(self.__file_path, 'w', encoding="utf-8") as file:
-            json.dump(self.__objects, file, ensure_ascii=False)
+        seral_objcts = {}
+        for key, obj in FileStorage.__objects.items():
+            seral_objcts[key] = obj.to_dict()
+        print(f"TEST CHECK SERIALIZED OBJECTS {seral_objcts}")
+        with open(FileStorage.__file_path, 'w', encoding="utf-8") as file:
+            
+            print("#" * 30)
+            print(f"TEST CHECK save methond  {FileStorage.__objects}")
+            print("#" * 30)
+            
+            json.dump(seral_objcts, file, ensure_ascii=False)
 
     def reload(self):
         """
@@ -63,10 +79,16 @@ class FileStorage():
         Write a function that creates an
         Object from a “JSON file”:
         """
-        if not os.path.isfile(self.__file_path):
+        if not os.path.isfile(FileStorage.__file_path):
             return
 
-        with open(self.__file_path, 'r', encoding="utf-8") as file:
+        with open(FileStorage.__file_path, 'r', encoding="utf-8") as file:
             data = file.read()
-            python_obj = json.loads(data)
-        return (python_obj)
+            if data:
+                python_obj = json.loads(data)
+                for key, value in python_obj.items():
+                    class_name, obj_id = key.split('.')
+                    module = __import__('models.' + class_name, fromlist=[class_name])
+                    cls = getattr(module, class_name)
+                    obj = cls(**value)
+                    FileStorage.__objects[key] = obj
