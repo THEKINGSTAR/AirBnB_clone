@@ -5,8 +5,11 @@ Class FileStorage that serializes instances to a JSON file
 and
 deserializes JSON file to instances:
 """
+
+
 import json
 import os
+
 
 
 class FileStorage:
@@ -64,7 +67,20 @@ class FileStorage:
         seral_objcts = {}
         for key, obj in FileStorage.__objects.items():
             seral_objcts[key] = obj.to_dict()
+        
         print(f"TEST CHECK SERIALIZED OBJECTS {seral_objcts}")
+        """
+        FIX THE {} IN 'file.json'
+        NOW WILL CHEC IF THERE IS DATA IN THE FILE LOAD IT IN DICTIONARY
+        AND CONTINUE TO UPDATE seral_obexts with it 
+        FINALY ADD THESE DATA TO THE 'file.json'
+        """
+        with open(FileStorage.__file_path, 'r', encoding="utf-8") as read:
+            read_data = json.load(read)
+
+        seral_objcts.update(read_data)
+        
+        print(f"TEST CHECK IF UPDATED SERIALIZED OBJECTS {seral_objcts}")
         with open(FileStorage.__file_path, 'w', encoding="utf-8") as file:
             
             print("#" * 30)
