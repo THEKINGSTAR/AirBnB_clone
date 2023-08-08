@@ -7,6 +7,7 @@ deserializes JSON file to instances:
 """
 
 import json
+import os
 
 
 class FileStorage():
@@ -29,7 +30,7 @@ class FileStorage():
 
     (only if the JSON file (__file_path) exists ; otherwise, do nothing. If the file doesn’t exist, no exception should be raised)
     """
-    __file_path = ""
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -62,7 +63,10 @@ class FileStorage():
         Write a function that creates an
         Object from a “JSON file”:
         """
-        with open(FileStorage.__file_path, 'r', encoding="utf-8") as file:
+        if not os.path.isfile(self.__file_path):
+            return
+
+        with open(self.__file_path, 'r', encoding="utf-8") as file:
             data = file.read()
             python_obj = json.loads(data)
         return (python_obj)
