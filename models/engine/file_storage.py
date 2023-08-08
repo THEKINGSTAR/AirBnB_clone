@@ -76,10 +76,10 @@ class FileStorage:
         AND CONTINUE TO UPDATE seral_obexts with it 
         FINALY ADD THESE DATA TO THE 'file.json'
         """
-        with open(FileStorage.__file_path, 'r', encoding="utf-8") as read:
-            read_data = json.load(read)
-
-        seral_objcts.update(read_data)
+        if os.path.isfile(FileStorage.__file_path):
+            with open(FileStorage.__file_path, 'r', encoding="utf-8") as read:
+                read_data = json.load(read)
+            seral_objcts.update(read_data)
         
         """print(f"TEST CHECK IF UPDATED SERIALIZED OBJECTS {seral_objcts}")"""
         with open(FileStorage.__file_path, 'w', encoding="utf-8") as file:
