@@ -5,6 +5,8 @@ instead of frontend to test system"""
 
 import cmd
 import importlib
+#from models.engine.file_storage import FileStorage
+from models import *
 
 class HBNBCommand(cmd.Cmd):
     """ airbnb console(command processor) """
@@ -35,6 +37,7 @@ class HBNBCommand(cmd.Cmd):
         if line is None or len(line) < 1:
             print("** class name missing **")
             return
+
         # line is classname
         snake_class_name = self.pascal_to_snake(line)
         try:
@@ -42,7 +45,14 @@ class HBNBCommand(cmd.Cmd):
         except Exception:
             print("** class doesn't exist **")
             return
-        print("class does exist")
+
+        # print("class does exist")
+
+        # Now create instance of this class
+        myclass = getattr(module, line)  # Again line is class name
+        created_inst = myclass() 
+        created_inst.save()
+        print(created_inst.id)
 
 
     def do_show(self, line):  # get by ID
@@ -76,13 +86,20 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-        print("class does exist")
+        # print("class does exist")
 
         # If the instance of the class name
         # doesn’t exist for the id
         # print ** no instance found **
 
         # %%% To be implemented later here %%%
+        req_inst = f"{myargs[0]}.{myargs[1]}"
+        if req_inst not in storage.all():
+            print("** no instance found **")
+            return
+        else:
+            print(storage.all()[req_inst])
+
 
     def do_destroy(self, line):  # delete by ID
         """ deletes an instance(obj) of
