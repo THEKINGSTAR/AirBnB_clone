@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, line):
-        """ creates instances(objs) of input class
+        """ creates an instance(obj) of input class
         also save it to json file (file.json)
         Return: print the id of created instance 
         example : create BaseModel
@@ -28,8 +28,11 @@ class HBNBCommand(cmd.Cmd):
         """
         # line is arguments or (just all text after main content)
         # print(f"line is: {line}")
+        # line is always of type str
+        # print(f"line is: {type(line)}")
 
-        if len(line) < 1:
+        # short circuit if line is None
+        if line is None or len(line) < 1:
             print("** class name missing **")
             return
         # line is classname
@@ -41,6 +44,84 @@ class HBNBCommand(cmd.Cmd):
             return
         print("class does exist")
 
+
+    def do_show(self, line):  # get by ID
+        """ show an instance(obj) of input class by
+        Id given by user
+        Like get resource by ID in any web API
+
+        format : show BaseModel {id : int}
+        example : show BaseModel 1234-1234-1234
+        this will show an instance of BaseModel class
+        """
+
+        # short circuit if line is None
+        if line is None or len(line) < 1:
+            print("** class name missing **")
+            return
+
+        myargs = line.split(' ')
+
+        # check if this class name exist
+        # myargs[0] is classname
+        snake_class_name = self.pascal_to_snake(myargs[0])
+        try:
+            module = importlib.import_module('models.' + snake_class_name)
+        except Exception:
+            print("** class doesn't exist **")
+            return
+
+        # check if ID is not given in the input
+        if len(myargs) != 2:  # or use < 2 
+            print("** instance id missing **")
+            return
+
+        print("class does exist")
+
+        # If the instance of the class name
+        # doesn’t exist for the id
+        # print ** no instance found **
+
+        # %%% To be implemented later here %%%
+
+    def do_destroy(self, line):  # delete by ID
+        """ deletes an instance(obj) of
+        input class by Id given by user
+        Like delete resource by ID in any web API
+
+        format : destroy BaseModel {id : int}
+        example : destroy BaseModel 1234-1234-1234
+        this will delete an instance of BaseModel class
+       """
+
+        # short circuit if line is None
+        if line is None or len(line) < 1:
+            print("** class name missing **")
+            return
+
+        myargs = line.split(' ')
+
+        # check if this class name exist
+        # myargs[0] is classname
+        snake_class_name = self.pascal_to_snake(myargs[0])
+        try:
+            module = importlib.import_module('models.' + snake_class_name)
+        except Exception:
+            print("** class doesn't exist **")
+            return
+
+        # check if ID is not given in the input
+        if len(myargs) != 2:  # or use < 2 
+            print("** instance id missing **")
+            return
+
+        print("class does exist")
+
+        # If the instance of the class name
+        # doesn’t exist for the id
+        # print ** no instance found **
+
+        # %%% To be implemented later here %%%
 
     @staticmethod
     def pascal_to_snake(name):
