@@ -4,7 +4,7 @@ instead of frontend to test system"""
 
 
 import cmd
-
+import importlib
 
 class HBNBCommand(cmd.Cmd):
     """ airbnb console(command processor) """
@@ -28,7 +28,6 @@ class HBNBCommand(cmd.Cmd):
         """
         # line is arguments or (just all text after main content)
         # print(f"line is: {line}")
-        import importlib
 
         if len(line) < 1:
             print("** class name missing **")
