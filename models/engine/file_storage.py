@@ -115,6 +115,9 @@ class FileStorage:
 
     @staticmethod
     def pascal_to_snake(name):
+        """ conver class name (pascal case)
+        to file name(snake case)
+        """
         snake_name = name[0].lower()  # first cap letter
         for char in name[1:]:
             if char.isupper():
