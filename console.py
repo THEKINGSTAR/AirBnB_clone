@@ -92,7 +92,6 @@ class HBNBCommand(cmd.Cmd):
         # doesn’t exist for the id
         # print ** no instance found **
 
-        # %%% To be implemented later here %%%
         req_inst = f"{myargs[0]}.{myargs[1]}"
         if req_inst not in storage.all():
             print("** no instance found **")
@@ -145,6 +144,41 @@ class HBNBCommand(cmd.Cmd):
            # update json file to reflect the deleted instance
            storage.save()
 
+    def do_all(self, line):  # get all objs of aclass
+        """ show all instances(objs) of input class
+        or show all instances if no class specified
+        Like get all resource in any web API
+
+        format : all {ClassName} or all
+        example : all BaseModel or all
+        this will show all instances of BaseModel class
+        """
+
+        # check if class name passed as argument to command all
+        if line is not None and len(line) > 1:
+            #myargs = line.split(' ')
+
+            # check if this class name exist
+            snake_class_name = self.pascal_to_snake(line)
+            try:
+                module = importlib.import_module('models.' + snake_class_name)
+                # print(f"storage.all: {storage.all()}")
+                str_list = []
+                for key, objval in storage.all().items():
+                    if line in key:  # if classname in key
+                        # add string version of the object
+                        str_list.append(str(objval))
+                print(str_list)
+                return
+
+            except Exception as e:
+                print(f"error: {type(e).__name__}: {e}")
+                print("** class doesn't exist **")
+                return
+
+        else:  # command is just all, without class name as argument
+            str_list = [str(objval) for key, objval in storage.all().items()]
+            print(str_list)
 
     @staticmethod
     def pascal_to_snake(name):
