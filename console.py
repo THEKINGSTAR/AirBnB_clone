@@ -132,6 +132,7 @@ class HBNBCommand(cmd.Cmd):
            # delete the instance by ID
            # via del keyword that deletes objects
            del storage.all()[req_inst]
+           # storage.rolad()
            # update json file to reflect the deleted instance
            storage.save()
 
@@ -194,7 +195,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         # check if ID is not given in the input
-        if len(myargs) != 2:  # or use < 2 
+        if len(myargs) < 2:
             print("** instance id missing **")
             return
 
@@ -203,9 +204,72 @@ class HBNBCommand(cmd.Cmd):
         if req_inst not in storage.all():
             print("** no instance found **")
             return
-        else:
-            # print(storage.all()[req_inst])
-            print("instance exist complete your code here")
+
+        # print(storage.all()[req_inst])
+        # print("instance exist complete your code here")
+
+        # check if attrubiute name is not given in input
+        if len(myargs) < 3:  # update BaseModel existing-id
+            print("** attribute name missing **")
+            return
+
+        # check if attrubiute value is not given in input
+        if len(myargs) < 4:  # update BaseModel Id first_name
+            print("** value missing **")
+            return
+
+        attr_name = myargs[2]
+
+        import re
+
+
+        # myargs was created by spliting string with " " delimeter
+        # myargs items and line always of tyoe string that how cmd cast them
+        # print(f"type of myargs[3]: {type(myargs[3])}")
+        
+        # order matters : this line handle case one word inside double quotes
+        attr_val = myargs[3]  # other cases handled below
+        # if other conditions was false this will be applied
+
+        if myargs[3][0] == '"':  # if first char is double quote
+            # join all myargs from index 3 till end in one string
+            src_str = ' '.join(myargs[3:])
+            # string in double quotes with optional leading/trailing spaces 
+            regex = r'^\s*"(.*?)"\s*$'
+            match = re.search(regex, src_str)
+            if match:  # or if match is not None:
+                # found a match: get value between first double quotes
+                # only first match, get str within double quotes
+                # print(f"match group[0] :{match.group(0)}")
+                # print(f"match group[1] :{match.group(1)}")
+                
+                attr_val = match.group(0)[1:-1]  # or attr_val = match.group(1)
+            
+            else:  # no match found only leading " exist
+                print("## you forget to close double quotes on attr value##")
+
+        else:  # no leading " in myargs[3]
+            # then it could be one owrd string or int or float type
+            attr_val = myargs[3]
+            cast = None
+            if '.' in attr_val:
+                # handle casting if input was intended to be int or float
+                cast = float
+            elif re.search(r'[a-zA-Z]', attr_val):
+                # attr_val conatain at least one letter so it is a string
+                cast = None
+            else:  # it is an integer it doesn't have any letters or . or "
+                cast = int
+
+        try:
+            attr_val = cast(attr_val)
+        except Exception:  # casting Failed
+            pass
+
+        # update or create attribute
+        setattr(storage.all()[req_inst], attr_name, attr_val)
+        # storage.reload()
+        storage.save()
 
     @staticmethod
     def pascal_to_snake(name):
