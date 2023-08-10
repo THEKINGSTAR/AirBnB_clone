@@ -6,8 +6,9 @@ name: string - empty string
 """
 
 
-import base_model
+from models.base_model import BaseModel
 
 
-class State(base_model):
+class State(BaseModel):
+    """ State class code here """
     name = ""

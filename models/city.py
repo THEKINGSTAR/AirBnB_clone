@@ -7,9 +7,10 @@ name: string - empty string
 """
 
 
-import base_model
+from models.base_model import BaseModel
 
 
-class City(base_model):
+class City(BaseModel):
+    """ city class code here"""
     state_id = ""
     name = ""

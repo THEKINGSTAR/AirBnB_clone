@@ -15,10 +15,11 @@ amenity_ids: list of string - empty list: it will be the list of Amenity.id late
 """
 
 
-import base_model
+from models.base_model import BaseModel
 
 
-class Amenity(base_model):
+class Place(BaseModel):
+    """ Place class (models/place.py) """
     city_id = ""
     user_id = ""
     name = ""

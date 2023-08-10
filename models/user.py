@@ -14,10 +14,11 @@ Update your command interpreter (console.py) to allow
 show, create, destroy, update and all used with User.
 """
 
-import base_model
+
+from models.base_model import BaseModel
 
 
-class User(base_model):
+class User(BaseModel):
     """
     User class that inherits from BaseModel:
     """

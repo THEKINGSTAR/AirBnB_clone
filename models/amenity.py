@@ -6,8 +6,9 @@ name: string - empty string
 """
 
 
-import base_model
+from models.base_model import BaseModel
 
 
 class Amenity(base_model):
+    """ Amenity class (models/amenity.py) """
     name = ""
