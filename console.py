@@ -132,13 +132,19 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-        print("class does exist")
+        # print("class does exist")
 
-        # If the instance of the class name
-        # doesn’t exist for the id
-        # print ** no instance found **
+        req_inst = f"{myargs[0]}.{myargs[1]}"
+        if req_inst not in storage.all():
+            print("** no instance found **")
+            return
+        else:
+           # delete the instance by ID
+           # via del keyword that deletes objects
+           del storage.all()[req_inst]
+           # update json file to reflect the deleted instance
+           storage.save()
 
-        # %%% To be implemented later here %%%
 
     @staticmethod
     def pascal_to_snake(name):
