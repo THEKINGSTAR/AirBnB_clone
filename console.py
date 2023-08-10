@@ -172,7 +172,7 @@ class HBNBCommand(cmd.Cmd):
                 return
 
             except Exception as e:
-                print(f"error: {type(e).__name__}: {e}")
+                # print(f"error: {type(e).__name__}: {e}")
                 print("** class doesn't exist **")
                 return
 
