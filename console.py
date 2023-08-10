@@ -39,12 +39,10 @@ class HBNBCommand(cmd.Cmd):
             return
 
         # line is classname
-        snake_class_name = self.pascal_to_snake(line)
-        try:
-            module = importlib.import_module('models.' + snake_class_name)
-        except Exception:
-            print("** class doesn't exist **")
-            return
+        module = self.cls_name_checker(line)
+
+        if module is None:
+            return  # return to console (without doing anything)
 
         # print("class does exist")
 
@@ -72,13 +70,10 @@ class HBNBCommand(cmd.Cmd):
 
         myargs = line.split(' ')
 
-        # check if this class name exist
         # myargs[0] is classname
-        snake_class_name = self.pascal_to_snake(myargs[0])
-        try:
-            module = importlib.import_module('models.' + snake_class_name)
-        except Exception:
-            print("** class doesn't exist **")
+        module = self.cls_name_checker(myargs[0])
+
+        if module is None:
             return
 
         # check if ID is not given in the input
@@ -117,13 +112,9 @@ class HBNBCommand(cmd.Cmd):
 
         myargs = line.split(' ')
 
-        # check if this class name exist
-        # myargs[0] is classname
-        snake_class_name = self.pascal_to_snake(myargs[0])
-        try:
-            module = importlib.import_module('models.' + snake_class_name)
-        except Exception:
-            print("** class doesn't exist **")
+        module = self.cls_name_checker(myargs[0])
+
+        if module is None:
             return
 
         # check if ID is not given in the input
@@ -180,6 +171,42 @@ class HBNBCommand(cmd.Cmd):
             str_list = [str(objval) for key, objval in storage.all().items()]
             print(str_list)
 
+    def do_update(self, line):  # get by ID
+        """ show an instance(obj) of input class by
+        Id given by user
+        Like get resource by ID in any web API
+
+        format : show BaseModel {id : int}
+        example : show BaseModel 1234-1234-1234
+        this will show an instance of BaseModel class
+        """
+
+        # short circuit if line is None
+        if line is None or len(line) < 1:
+            print("** class name missing **")
+            return
+
+        myargs = line.split(' ')
+
+        module = self.cls_name_checker(myargs[0])
+
+        if module is None:
+            return
+
+        # check if ID is not given in the input
+        if len(myargs) != 2:  # or use < 2 
+            print("** instance id missing **")
+            return
+
+
+        req_inst = f"{myargs[0]}.{myargs[1]}"
+        if req_inst not in storage.all():
+            print("** no instance found **")
+            return
+        else:
+            # print(storage.all()[req_inst])
+            print("instance exist complete your code here")
+
     @staticmethod
     def pascal_to_snake(name):
         """ conver class name (pascal case)
@@ -193,7 +220,15 @@ class HBNBCommand(cmd.Cmd):
                 snake_name += char
         return snake_name        
         
-
+    def cls_name_checker(self, line):
+        """ check if this class name exist
+        """
+        snake_class_name = self.pascal_to_snake(line)
+        try:
+            return(importlib.import_module('models.' + snake_class_name))
+        except Exception:
+            print("** class doesn't exist **")
+            return None
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
