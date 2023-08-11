@@ -10,6 +10,7 @@ deserializes JSON file to instances:
 import json
 import os
 from models import *  # Import all classes
+import importlib
 
 
 class FileStorage:
@@ -72,7 +73,7 @@ class FileStorage:
         """
         if not os.path.isfile(FileStorage.__file_path):
             return
-        import importlib
+
         with open(FileStorage.__file_path, 'r', encoding="utf-8") as file:
             data = file.read()
             if data:
