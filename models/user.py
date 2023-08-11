@@ -9,8 +9,9 @@ password: string - empty string
 first_name: string - empty string
 last_name: string - empty string
 
-Update FileStorage to manage correctly serialization and deserialization of User.
-Update your command interpreter (console.py) to allow
+Update FileStorage to manage correctly serialization and
+deserialization of User.
+Update your command interpreter (console.py) to allowi
 show, create, destroy, update and all used with User.
 """
 

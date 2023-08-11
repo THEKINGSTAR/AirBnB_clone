@@ -5,8 +5,10 @@ instead of frontend to test system"""
 
 import cmd
 import importlib
-#from models.engine.file_storage import FileStorage
+# from models.engine.file_storage import FileStorage
 from models import *
+import re
+
 
 class HBNBCommand(cmd.Cmd):
     """ airbnb console(command processor) """
@@ -24,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """ creates an instance(obj) of input class
         also save it to json file (file.json)
-        Return: print the id of created instance 
+        Return: print the id of created instance
         example : create BaseModel
         this will create instance of BaseModel class
         """
@@ -48,10 +50,9 @@ class HBNBCommand(cmd.Cmd):
 
         # Now create instance of this class
         myclass = getattr(module, line)  # Again line is class name
-        created_inst = myclass() 
+        created_inst = myclass()
         created_inst.save()
         print(created_inst.id)
-
 
     def do_show(self, line):  # get by ID
         """ show an instance(obj) of input class by
@@ -77,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         # check if ID is not given in the input
-        if len(myargs) != 2:  # or use < 2 
+        if len(myargs) != 2:  # or use < 2
             print("** instance id missing **")
             return
 
@@ -93,7 +94,6 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             print(storage.all()[req_inst])
-
 
     def do_destroy(self, line):  # delete by ID
         """ deletes an instance(obj) of
@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         # check if ID is not given in the input
-        if len(myargs) != 2:  # or use < 2 
+        if len(myargs) != 2:  # or use < 2
             print("** instance id missing **")
             return
 
@@ -129,12 +129,12 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
         else:
-           # delete the instance by ID
-           # via del keyword that deletes objects
-           del storage.all()[req_inst]
-           # storage.rolad()
-           # update json file to reflect the deleted instance
-           storage.save()
+            # delete the instance by ID
+            # via del keyword that deletes objects
+            del storage.all()[req_inst]
+            # storage.rolad()
+            # update json file to reflect the deleted instance
+            storage.save()
 
     def do_all(self, line):  # get all objs of aclass
         """ show all instances(objs) of input class
@@ -148,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
 
         # check if class name passed as argument to command all
         if line is not None and len(line) > 1:
-            #myargs = line.split(' ')
+            # myargs = line.split(' ')
 
             # check if this class name exist
             snake_class_name = self.pascal_to_snake(line)
@@ -199,7 +199,6 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-
         req_inst = f"{myargs[0]}.{myargs[1]}"
         if req_inst not in storage.all():
             print("** no instance found **")
@@ -220,13 +219,10 @@ class HBNBCommand(cmd.Cmd):
 
         attr_name = myargs[2]
 
-        import re
-
-
-        # myargs was created by spliting string with " " delimeter
+        # myargs was created by spliting string with space delimeter
         # myargs items and line always of tyoe string that how cmd cast them
         # print(f"type of myargs[3]: {type(myargs[3])}")
-        
+
         # order matters : this line handle case one word inside double quotes
         attr_val = myargs[3]  # other cases handled below
         # if other conditions was false this will be applied
@@ -234,7 +230,7 @@ class HBNBCommand(cmd.Cmd):
         if myargs[3][0] == '"':  # if first char is double quote
             # join all myargs from index 3 till end in one string
             src_str = ' '.join(myargs[3:])
-            # string in double quotes with optional leading/trailing spaces 
+            # string in double quotes with optional leading/trailing spaces
             regex = r'^\s*"(.*?)"\s*$'
             match = re.search(regex, src_str)
             if match:  # or if match is not None:
@@ -242,9 +238,9 @@ class HBNBCommand(cmd.Cmd):
                 # only first match, get str within double quotes
                 # print(f"match group[0] :{match.group(0)}")
                 # print(f"match group[1] :{match.group(1)}")
-                
+
                 attr_val = match.group(0)[1:-1]  # or attr_val = match.group(1)
-            
+
             else:  # no match found only leading " exist
                 print("## you forget to close double quotes on attr value##")
 
@@ -282,17 +278,18 @@ class HBNBCommand(cmd.Cmd):
                 snake_name += '_' + char.lower()
             else:
                 snake_name += char
-        return snake_name        
-        
+        return snake_name
+
     def cls_name_checker(self, line):
         """ check if this class name exist
         """
         snake_class_name = self.pascal_to_snake(line)
         try:
-            return(importlib.import_module('models.' + snake_class_name))
+            return (importlib.import_module('models.' + snake_class_name))
         except Exception:
             print("** class doesn't exist **")
             return None
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
