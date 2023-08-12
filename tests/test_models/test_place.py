@@ -1,19 +1,27 @@
 #!/usr/bin/python3
-""" module description : testunit for *.py in python
+"""
+TEST INHERTINCE OF THE BASEMODEL CLASE
 """
 
 
 import unittest
+from models.base_model import BaseModel
+from models.place import Place
 
 
 class Test(unittest.TestCase):
-    """ desc---ription """
+    """
+    test for place inherting
+    """
 
-    def testc1(self):
-        """ desc.....ription """
+    def test_place(self):
+        """
+        place inhertin test
+        """
         # result = function_to_test(input_data)
         # self.assertEqual(result, expected_output)
-        pass
+
+        self.assertTrue(issubclass(Place, BaseModel))
 
 
 if __name__ == "__main__":

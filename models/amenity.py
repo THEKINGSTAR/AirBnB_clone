@@ -9,6 +9,6 @@ name: string - empty string
 from models.base_model import BaseModel
 
 
-class Amenity(base_model):
+class Amenity(BaseModel):
     """ Amenity class (models/amenity.py) """
     name = ""
