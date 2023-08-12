@@ -13,17 +13,13 @@ from console import HBNBCommand
 class Test(unittest.TestCase):
     """ desc---ription """
 
-    def testc1(self):
-        """ desc.....ription """
-        # result = function_to_test(input_data)
-        # self.assertEqual(result, expected_output)
-        # pass
-
+    def test_help_eof(self):
+        """ tests help EOF outputi n console"""
         # Set the expected output here
-        expected_output = "dummy text"
+        expected_output = " exit on EOF (ctrl+D) \n"
 
         with patch('sys.stdout', new=StringIO()) as file:
-            HBNBCommand().onecmd("help show")
+            HBNBCommand().onecmd("help EOF")
             actual_output = file.getvalue()  # Get the captured output
 
         self.assertEqual(expected_output, actual_output)
