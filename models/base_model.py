@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" module description """
+"""
+BaseModel that defines all common attributes/methods for other classes
+"""
 
 
 import uuid
@@ -8,10 +10,14 @@ from models import storage
 
 
 class BaseModel():
-    """ class BaseModel """
+    """
+    class BaseModel
+    """
 
     def __init__(self, *args, **kwargs):
-        """ instance intialization function """
+        """
+        instance intialization function
+        """
         if kwargs and len(kwargs) > 0:
             for key, val in kwargs.items():
                 if key == 'created_at':
@@ -31,7 +37,8 @@ class BaseModel():
             storage.new(self)
 
     def save(self):
-        """ save function to set current time
+        """
+        save function to set current time
         for instance attribute updated at
         """
         self.updated_at = datetime.now()
@@ -51,13 +58,16 @@ class BaseModel():
         return (my_dict)
 
     def __str__(self):
-        """ return : string as required by task """
+        """
+        return : string as required by task
+        """
         return ("[{}] ({}) {}".format(type(self).__name__,
                 self.id, self.__dict__))
 
     @staticmethod
     def convert_to_datetime(datetime_string):
-        """ Return: datetime object
+        """
+        Return: datetime object
         convert string to datatime object
         via datetime.strptime
         """
