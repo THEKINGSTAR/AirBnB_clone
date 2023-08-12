@@ -2,12 +2,17 @@
 # Background Context
 ## Welcome to the AirBnB clone project!
 
+![Airbnb](https://github.com/Abdalmohsen-H/AirBnB_clone/assets/25788408/f6b79ba1-50c8-45f2-b3c4-11641e9a89a3)
+
 ## First step: Write a command interpreter to manage your AirBnB objects.
 > ### This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
-## Python
 
+
+## Python
 console is used to interact with this AirBnb clone
 instead of frontend
+
+![cosole](https://github.com/Abdalmohsen-H/AirBnB_clone/assets/25788408/4f042332-953c-4bc2-b6de-9419f4aac9c9)
 
 ## Usage
 
