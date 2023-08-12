@@ -23,6 +23,12 @@ class HBNBCommand(cmd.Cmd):
         """ exit on EOF (ctrl+D) """
         return True
 
+    def emptyline(self):
+        """ Handle empty line : Do nothing if it's
+        an empty line.
+        """
+        pass
+
     def do_create(self, line):
         """ creates an instance(obj) of input class
         also save it to json file (file.json)
