@@ -1,19 +1,27 @@
 #!/usr/bin/python3
-""" module description : testunit for *.py in python
+"""
+TEST INHERTINCE OF THE BASEMODEL CLASE
 """
 
 
 import unittest
+from models.base_model import BaseModel
+from models.amenity import Amenity
 
 
 class Test(unittest.TestCase):
-    """ desc---ription """
+    """
+    test for amenity inherting
+    """
 
-    def testc1(self):
-        """ desc.....ription """
+    def test_amenity(self):
+        """
+        amenity inhertin test
+        """
         # result = function_to_test(input_data)
         # self.assertEqual(result, expected_output)
-        pass
+
+        self.assertTrue(issubclass(Amenity, BaseModel))
 
 
 if __name__ == "__main__":
