@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-BaseModel that defines all common attributes/methods for other classes
+BaseModel that defines all common attributes/methods
+for other classes
 """
 
 
@@ -12,6 +13,7 @@ from models import storage
 class BaseModel():
     """
     class BaseModel
+    ttributes/methods
     """
 
     def __init__(self, *args, **kwargs):
