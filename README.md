@@ -6,6 +6,8 @@ console is used to interact with this AirBnb clone
 instead of frontend
 
 ## Usage
+
+How to use it
 ```
 $ ./console.py
 ```
@@ -28,7 +30,6 @@ EOF  all  create  destroy  help  quit  show  update
 ```
 
 ## Examples
-<pre>
 ```
 (hbnb) all
 []
@@ -69,4 +70,3 @@ EOF  all  create  destroy  help  quit  show  update
 
 (hbnb) quit
 ```
-</pre>
