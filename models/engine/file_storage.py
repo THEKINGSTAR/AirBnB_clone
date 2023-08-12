@@ -14,15 +14,14 @@ import importlib
 
 
 class FileStorage:
-    """
-    Class FileStorage that serializes instances to a JSON file
+    """ Class FileStorage that serializes
+    instances to a JSON file
     """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """
-        returns the dictionary __objects
+        """ returns the dictionary __objects
         """
         return (FileStorage.__objects)
 

@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" module description """
+""" module description : Base Model
+module for BaseModel class """
 
 
 import uuid
@@ -8,10 +9,15 @@ from models import storage
 
 
 class BaseModel():
-    """ class BaseModel """
+    """ class BaseModel doc string"""
 
     def __init__(self, *args, **kwargs):
         """ instance intialization function """
+        # id: string - via uuid when an instance is created
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+
         if kwargs and len(kwargs) > 0:
             for key, val in kwargs.items():
                 if key == 'created_at':
@@ -24,10 +30,6 @@ class BaseModel():
                     setattr(self, key, val)
 
         else:
-            # id: string - via uuid when an instance is created
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
             storage.new(self)
 
     def save(self):
@@ -38,8 +40,7 @@ class BaseModel():
         storage.save()
 
     def to_dict(self):
-        """
-        returns a dictionary
+        """ returns a dictionary
         containing all keys/values
         of dict of the instance:
         """
