@@ -1,5 +1,9 @@
 # 0x00. AirBnB clone - The console
+# Background Context
+## Welcome to the AirBnB clone project!
 
+## First step: Write a command interpreter to manage your AirBnB objects.
+> ### This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
 ## Python
 
 console is used to interact with this AirBnb clone
@@ -8,12 +12,12 @@ instead of frontend
 ## Usage
 
 How to use it
-```
+```shell
 $ ./console.py
 ```
 this will start command line interpeter
 
-```
+```shell
 (hbnb) 
 ```
 
@@ -21,7 +25,7 @@ Now you have to use commands to ineract with console
 
 command help will display availaple commands
 
-```
+```shell
 (hbnb) help
 
 Documented commands (type help <topic>):
@@ -30,7 +34,7 @@ EOF  all  create  destroy  help  quit  show  update
 ```
 
 ## Examples
-```
+```python
 (hbnb) all
 []
 (hbnb) create BaseModel
