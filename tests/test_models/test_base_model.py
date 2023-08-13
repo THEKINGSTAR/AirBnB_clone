@@ -142,6 +142,15 @@ class TestBaseModel(unittest.TestCase):
         base_dict_test = save_model.to_dict()
         self.assertTrue(isinstance(base_dict_test, dict))
 
+    def test_check_documintation(self):
+        """
+        Function to check the documintation of the
+        functions in basemodel class
+        """
+        bmclsdc = '\n    class BaseModel attributes/methods\n    '
+        bmdoc = BaseModel.__doc__
+        self.assertEqual(bmclsdc, bmdoc)
+
 
 if __name__ == "__main__":
     unittest.main()
