@@ -110,7 +110,7 @@ class TestBaseModel(unittest.TestCase):
         """
         my_dict = self.mybase.to_dict()
         self.assertIsInstance(my_dict['updated_at'], str)
-    
+
     def test_base_model_creating_new(self):
         """
         test comparing tow model creation
