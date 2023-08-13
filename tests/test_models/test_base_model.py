@@ -12,6 +12,7 @@ from models.base_model import BaseModel
 import unittest
 import os
 from datetime import datetime
+from models.engine.file_storage import FileStorage
 
 
 class TestBaseModel(unittest.TestCase):
@@ -150,6 +151,35 @@ class TestBaseModel(unittest.TestCase):
         bmclsdc = '\n    class BaseModel attributes/methods\n    '
         bmdoc = BaseModel.__doc__
         self.assertEqual(bmclsdc, bmdoc)
+
+    def test_check_FileStorage_method_all(self):
+        """
+        Function to check the documintation of the
+        functions in filestorage class
+        """
+        all_dc = " returns the dictionary __objects "
+        self.assertEqual(FileStorage.all.__doc__, all_dc)
+
+    def test_check_FileStorage_method_new(self):
+        """
+        Function to check the documintation of the
+        functions in filestorage class
+        """
+        all_dc = (
+            '\n        sets in __objects the obj with key <obj class name>.id'
+        )
+        self.assertEqual(FileStorage.new.__doc__, all_dc)
+
+    def test_check_FileStorage_method_save(self):
+        """
+        Function to check the documintation of the
+        functions in filestorage class
+        """
+        save_dc = """ serializes __objects to the JSON file (path: __file_path)
+        function that writes an Object to a text file,
+        using a JSON representation: """
+
+        self.assertEqual(FileStorage.save.__doc__, save_dc)
 
 
 if __name__ == "__main__":

@@ -14,30 +14,27 @@ import importlib
 
 
 class FileStorage:
-    """ Class FileStorage that serializes
+    """
+    Class FileStorage that serializes
     instances to a JSON file
     """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """ returns the dictionary __objects
-        """
+        """ returns the dictionary __objects """
         return (FileStorage.__objects)
 
     def new(self, obj):
         """
-        sets in __objects the obj with key <obj class name>.id
-        """
+        sets in __objects the obj with key <obj class name>.id"""
         key = "{}.{}".format(obj.__class__.__name__, str(obj.id))
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """
-        serializes __objects to the JSON file (path: __file_path)
+        """ serializes __objects to the JSON file (path: __file_path)
         function that writes an Object to a text file,
-        using a JSON representation:
-        """
+        using a JSON representation: """
         # Get the objects from the class.__objects
         seral_objcts = {}
         for key, obj in FileStorage.__objects.items():
