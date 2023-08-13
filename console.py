@@ -23,9 +23,9 @@ class HBNBCommand(cmd.Cmd):
         """ exit on EOF (ctrl+D) """
         return True
 
-    def emptyargs(self):
-        """ Handle empty args : Do nothing if it's
-        an empty args.
+    def emptyline(self):
+        """ Handle empty line : Do nothing if it's
+        an empty line.
         """
         pass
 
