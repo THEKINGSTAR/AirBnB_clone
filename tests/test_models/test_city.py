@@ -34,12 +34,15 @@ class TestCity(unittest.TestCase):
 
     def test_city_class_attributes(self):
         """
-        Function to check the documintation of the
+        Function to check the attributes of the
         functions in basemodel class
         """
-        bmclsdc = """ city class code here"""
-        bmdoc = City.__doc__
-        self.assertEqual(bmclsdc, bmdoc)
+        self.assertTrue(type(City.state_id) is str)
+        City.state_id = 123
+        cit = City()
+        cit.id = 123
+        self.assertEqual(cit.id, City.state_id)
+        self.assertTrue(type(cit.id) is int)
 
 
 if __name__ == "__main__":
