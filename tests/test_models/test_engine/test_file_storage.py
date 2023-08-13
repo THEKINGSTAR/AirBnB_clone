@@ -57,16 +57,27 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(TypeError):
             models.storage.save(None)
 
-    def test_new_w_arg(self):
+    def test_new_w_none(self):
         """
-        description : test new method with args
+        description : test new method with none
+        as
         """
         with self.assertRaises(AttributeError):
             models.storage.new(None)
 
-    def test_reload_w_arg(self):
+    def test_new_w_arg(self):
         """
-        description : test reload method with args
+        description : test new method with args
+        """
+        # TypeError: new() takes 2 positional
+        # arguments but 3 were given
+        with self.assertRaises(TypeError):
+            models.storage.new(BaseModel, 2)
+
+    def test_reload_w_none(self):
+        """
+        description : test reload method with
+        None as args
         """
         with self.assertRaises(TypeError):
             models.storage.reload(None)
