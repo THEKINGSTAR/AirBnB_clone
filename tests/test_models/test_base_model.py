@@ -181,6 +181,19 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertEqual(FileStorage.save.__doc__, save_dc)
 
+    def test_check_FileStorage_method_reload(self):
+        """
+        Function to check the documintation of the
+        functions in filestorage class
+        """
+        rld_dc = """
+        deserializes the JSON file to __objects
+        Write a function that creates an
+        Object from a “JSON file”:
+        """
+
+        self.assertEqual(FileStorage.reload.__doc__, rld_dc)
+
 
 if __name__ == "__main__":
     unittest.main()
