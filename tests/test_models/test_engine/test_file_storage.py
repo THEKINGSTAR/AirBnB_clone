@@ -100,6 +100,67 @@ class TestFileStorage(unittest.TestCase):
         objcts = FileStorage._FileStorage__objects
         self.assertIn("Review." + rvie.id, objcts)
 
+    def test_check_file_storage_documintation(self):
+        """
+        Function to check the documintation of the
+        functions in file storage class
+        """
+        fsclsdc = (
+            " Class FileStorage that serializes\n    instances to a JSON file "
+        )
+        fsdoc = FileStorage.__doc__
+        self.assertEqual(fsclsdc, fsdoc)
+
+    def test_check_FileStorage_method_all(self):
+        """
+        Function to check the documintation of the
+        functions in filestorage class
+        """
+        all_dc = " returns the dictionary __objects "
+        self.assertEqual(FileStorage.all.__doc__, all_dc)
+
+    def test_check_FileStorage_method_new(self):
+        """
+        Function to check the documintation of the
+        functions in filestorage class
+        """
+        all_dc = (
+            '\n        sets in __objects the obj with key <obj class name>.id'
+        )
+        self.assertEqual(FileStorage.new.__doc__, all_dc)
+
+    def test_check_FileStorage_method_save(self):
+        """
+        Function to check the documintation of the
+        functions in filestorage class
+        """
+        save_dc = """ serializes __objects to the JSON file (path: __file_path)
+        function that writes an Object to a text file,
+        using a JSON representation: """
+
+        self.assertEqual(FileStorage.save.__doc__, save_dc)
+
+    def test_check_FileStorage_method_reload(self):
+        """
+        Function to check the documintation of the
+        functions in filestorage class
+        """
+        rld_dc = """
+        deserializes the JSON file to __objects
+        Write a function that creates an
+        Object from a “JSON file”:
+        """
+
+        self.assertEqual(FileStorage.reload.__doc__, rld_dc)
+
+    def test_file_storage_atributes(self):
+        """
+        check the attributes of file storage
+        """
+        json_storage = FileStorage()
+        self.assertEqual(json_storage._FileStorage__file_path, "file.json")
+        self.assertTrue(isinstance(json_storage._FileStorage__objects, dict))
+
 
 if __name__ == "__main__":
     unittest.main()

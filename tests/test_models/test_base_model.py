@@ -6,12 +6,11 @@ for BaseModel class
 
 import json
 import unittest
-import models
 import sys
-from models.base_model import BaseModel
-import unittest
 import os
+import models
 from datetime import datetime
+from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
 

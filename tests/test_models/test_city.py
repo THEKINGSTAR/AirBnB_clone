@@ -14,7 +14,7 @@ class TestCity(unittest.TestCase):
     test for CITY inherting
     """
 
-    def test_amenity(self):
+    def test_city_class(self):
         """
         CITY inhertin test
         """
@@ -22,6 +22,24 @@ class TestCity(unittest.TestCase):
         # self.assertEqual(result, expected_output)
 
         self.assertTrue(issubclass(City, BaseModel))
+
+    def test_city_class_documintation(self):
+        """
+        Function to check the documintation of the
+        functions in basemodel class
+        """
+        bmclsdc = """ city class code here"""
+        bmdoc = City.__doc__
+        self.assertEqual(bmclsdc, bmdoc)
+
+    def test_city_class_attributes(self):
+        """
+        Function to check the documintation of the
+        functions in basemodel class
+        """
+        bmclsdc = """ city class code here"""
+        bmdoc = City.__doc__
+        self.assertEqual(bmclsdc, bmdoc)
 
 
 if __name__ == "__main__":
