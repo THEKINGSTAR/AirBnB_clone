@@ -23,10 +23,46 @@ class TestFileStorage(unittest.TestCase):
     storage
     """
 
+    @classmethod
+    def setUpClass(mycls):
+        """Function that intialize test parameters
+        within unittests for testing only"""
+
+        try:
+            os.rename("file.json", "mytmp")
+        except Exception:
+            pass
+
+    @classmethod
+    def tearDownClass(mycls):
+        """Function that removes test parameters
+        that created by setup class
+        within unittests for testing only"""
+
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
+        FileStorage._FileStorage__objects = {}
+
     def test_storage_init(self):
         """ test correct type of class
         """
         self.assertEqual(type(models.storage), FileStorage)
+
+    def test_save_w_arg(self):
+        """
+        description : test save method with args
+        """
+        with self.assertRaises(TypeError):
+            models.storage.save(None)
+
+    def test_new_w_arg(self):
+        """
+        description : test new method with args
+        """
+        with self.assertRaises(AttributeError):
+            models.storage.new(None)
 
     def test_reload_w_arg(self):
         """
