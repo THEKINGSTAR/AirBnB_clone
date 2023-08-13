@@ -123,6 +123,25 @@ class TestBaseModel(unittest.TestCase):
         my_new_model = BaseModel(**my_model_json)
         self.assertFalse(my_model is my_new_model)
 
+    def test_jsonfile_save(self):
+        """
+        testing if it save correctly to json file
+        with dictionry representation
+        """
+        save_model = BaseModel()
+        base_dict_test = BaseModel()
+        save_model.name = "SAVING TEST"
+        save_model.my_number = 1001
+        base_dict_test.save()
+        # after save: created_at must be less than updated_at
+        self.assertLess(self.mybase.created_at, self.mybase.updated_at)
+        with open("file.json", "r") as f:
+            # check if instance Id in test json file
+            self.assertIn(str(base_dict_test.id), f.read())
+
+        base_dict_test = save_model.to_dict()
+        self.assertTrue(isinstance(base_dict_test, dict))
+
 
 if __name__ == "__main__":
     unittest.main()
