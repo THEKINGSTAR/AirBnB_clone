@@ -9,7 +9,7 @@ from models.base_model import BaseModel
 from models.place import Place
 
 
-class Test(unittest.TestCase):
+class TestPlace(unittest.TestCase):
     """
     test for place inherting
     """

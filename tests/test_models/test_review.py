@@ -9,7 +9,7 @@ from models.base_model import BaseModel
 from models.review import Review
 
 
-class Test(unittest.TestCase):
+class TestReview(unittest.TestCase):
     """
     test for review inherting
     """
