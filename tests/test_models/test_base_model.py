@@ -3,6 +3,11 @@
 for BaseModel class
 """
 
+
+import json
+import unittest
+import models
+import sys
 from models.base_model import BaseModel
 import unittest
 import os
@@ -44,7 +49,7 @@ class TestBaseModel(unittest.TestCase):
         except Exception:
             pass
 
-    def test_base_model(self):
+    def test_base_model_attributes(self):
         """
         CHECK THE INHERETANCE AND THE ATRIBUTES
         WHEN CREATING SUB CLASES
@@ -105,6 +110,18 @@ class TestBaseModel(unittest.TestCase):
         """
         my_dict = self.mybase.to_dict()
         self.assertIsInstance(my_dict['updated_at'], str)
+    
+    def test_base_model_creating_new(self):
+        """
+        test comparing tow model creation
+        have diffrents inherting attributes
+        """
+        my_model = BaseModel()
+        my_model.name = "My_First_Model"
+        my_model.my_number = 89
+        my_model_json = my_model.to_dict()
+        my_new_model = BaseModel(**my_model_json)
+        self.assertFalse(my_model is my_new_model)
 
 
 if __name__ == "__main__":
