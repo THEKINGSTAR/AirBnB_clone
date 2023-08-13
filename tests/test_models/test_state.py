@@ -22,7 +22,3 @@ class Test(unittest.TestCase):
         # self.assertEqual(result, expected_output)
 
         self.assertTrue(issubclass(State, BaseModel))
-
-
-if __name__ == "__main__":
-    unittest.main()
