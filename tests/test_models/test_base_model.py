@@ -194,6 +194,14 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertEqual(FileStorage.reload.__doc__, rld_dc)
 
+    def test_file_storage_atributes(self):
+        """
+        check the attributes of file storage
+        """
+        json_storage = FileStorage()
+        self.assertEqual(json_storage._FileStorage__file_path, "file.json")
+        self.assertTrue(isinstance(json_storage._FileStorage__objects, dict))
+
 
 if __name__ == "__main__":
     unittest.main()
