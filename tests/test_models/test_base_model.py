@@ -143,7 +143,7 @@ class TestBaseModel(unittest.TestCase):
         base_dict_test = save_model.to_dict()
         self.assertTrue(isinstance(base_dict_test, dict))
 
-    def test_check_documintation(self):
+    def test_check_base_mod_documintation(self):
         """
         Function to check the documintation of the
         functions in basemodel class
@@ -151,6 +151,17 @@ class TestBaseModel(unittest.TestCase):
         bmclsdc = '\n    class BaseModel attributes/methods\n    '
         bmdoc = BaseModel.__doc__
         self.assertEqual(bmclsdc, bmdoc)
+
+    def test_check_file_storage_documintation(self):
+        """
+        Function to check the documintation of the
+        functions in file storage class
+        """
+        fsclsdc = (
+            " Class FileStorage that serializes\n    instances to a JSON file "
+        )
+        fsdoc = FileStorage.__doc__
+        self.assertEqual(fsclsdc, fsdoc)
 
     def test_check_FileStorage_method_all(self):
         """
