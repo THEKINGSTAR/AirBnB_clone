@@ -9,7 +9,7 @@ from models.base_model import BaseModel
 from models.city import City
 
 
-class Test(unittest.TestCase):
+class TestCity(unittest.TestCase):
     """
     test for CITY inherting
     """

@@ -10,7 +10,7 @@ from io import StringIO
 from console import HBNBCommand
 
 
-class Test(unittest.TestCase):
+class TestConsole(unittest.TestCase):
     """ desc---ription """
 
     def test_help_eof(self):

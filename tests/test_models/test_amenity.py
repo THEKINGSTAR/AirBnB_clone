@@ -9,7 +9,7 @@ from models.base_model import BaseModel
 from models.amenity import Amenity
 
 
-class Test(unittest.TestCase):
+class TestAmenity(unittest.TestCase):
     """
     test for amenity inherting
     """
