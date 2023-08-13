@@ -276,8 +276,17 @@ class HBNBCommand(cmd.Cmd):
     def do_count(self, args):
         """ count number of instances of specific class
         mentioned in args
+
+        Usage: count <class> or <class>.count()
+
+        Retrieve the number of instances of a given class.
         """
-        pass
+        myargs = args.split(' ')
+        count = 0
+        for obj in storage.all().values():
+            if myargs[0] == obj.__class__.__name__:
+                count += 1
+        print(count)  # display count of inst in console
 
     def default(self, line):
         """ override Default behavior for cmd module
