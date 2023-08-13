@@ -13,7 +13,7 @@ from models import storage
 class BaseModel():
     """
     class BaseModel
-    ttributes/methods
+    attributes/methods
     """
 
     def __init__(self, *args, **kwargs):
